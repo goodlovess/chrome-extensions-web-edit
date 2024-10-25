@@ -1,0 +1,899 @@
+#chrome-extension-sidebar {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.sidebar-header {
+  padding: 15px 20px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  background: #f8f9fa;
+}
+
+#sidebar-close-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+}
+
+#sidebar-close-btn:hover {
+  color: #333;
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+#chrome-extension-sidebar h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.dom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.dom-table th,
+.dom-table td {
+  border: 1px solid #eee;
+  padding: 8px;
+  text-align: left;
+}
+
+.dom-table th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.dom-table tr:hover {
+  background: #f8f9fa;
+}
+
+/* 现有样式保持不变 */
+
+/* 添加新的样式 */
+.extension-highlight-element {
+  outline: 2px solid #ff4444 !important;
+  background-color: rgba(255, 68, 68, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+.dom-row {
+  cursor: pointer;
+}
+
+.dom-row:hover {
+  background-color: #f0f0f0;
+}
+
+.selected-row {
+  background-color: #e3f2fd !important;
+}
+
+/* 保留原有样式 */
+
+/* 添加新样式 */
+.breadcrumb-container {
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  /* 移除 white-space: nowrap */
+  /* 添加自动换行 */
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 1.8;
+}
+
+.breadcrumb-item {
+  color: #0066cc;
+  cursor: pointer;
+  /* 添加显示样式 */
+  display: inline-block;
+  max-width: 300px; /* 限制单个项的最大宽度 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  padding: 2px 0;
+}
+
+.breadcrumb-item:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #666;
+  cursor: default;
+}
+
+.breadcrumb-item.active:hover {
+  text-decoration: none;
+}
+
+.breadcrumb-separator {
+  color: #666;
+  margin: 0 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.children-count {
+  color: #666;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.has-children {
+  cursor: pointer;
+}
+
+.has-children:hover {
+  background-color: #f0f0f0;
+}
+
+.has-children td:hover {
+  color: #0066cc;
+}
+
+/* 添加悬停提示样式 */
+.breadcrumb-item[title] {
+  border-bottom: 1px dotted #999;
+}
+
+/* 添加源码按钮样 */
+.view-source-btn {
+  padding: 4px 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #333;
+}
+
+.view-source-btn:hover {
+  background-color: #e0e0e0;
+  border-color: #ccc;
+}
+
+/* 调整表格列宽 */
+.dom-table td:first-child {
+  width: 80%;
+}
+
+.dom-table td:last-child {
+  width: 20%;
+  text-align: center;
+}
+
+/* CSS钮样式 */
+.view-css-btn {
+  padding: 4px 8px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  color: white;
+}
+
+.view-css-btn:hover {
+  background-color: #45a049;
+}
+
+/* 模态框样式 */
+.css-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.css-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  max-height: 80%;
+  margin: 20px;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.css-modal-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 10px 0;
+  margin: -20px -20px 15px -20px;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.css-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.css-modal-close:hover {
+  color: #333;
+}
+
+.css-properties-form {
+  display: grid;
+  gap: 10px;
+}
+
+/* 属性翻译样式 */
+.property-translation {
+  color: #666;
+  font-size: 12px;
+  margin-left: 5px;
+  font-style: italic;
+}
+
+.css-property-row {
+  display: grid;
+  grid-template-columns: minmax(150px, auto) 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.css-property-row label {
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: help;
+}
+
+.css-property-input {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: monospace;
+  background-color: white;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.css-property-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.css-property-input:hover {
+  border-color: #999;
+}
+
+/* 添加无样式消息的样式 */
+.no-styles-message {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  font-style: italic;
+}
+
+/* 修改模态框样式 */
+.modal-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.css-save-btn {
+  padding: 4px 12px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.css-save-btn:hover {
+  background-color: #45a049;
+}
+
+/* CSS 弹窗样式 */
+.css-popup {
+  position: absolute;
+  top: 0;
+  right: -420px; /* 从侧边栏右侧滑出 */
+  height: 100%;
+  width: 400px;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  z-index: 9998;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.css-popup.show {
+  transform: translateX(-420px);
+}
+
+.css-popup-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  flex-shrink: 0;
+}
+
+.css-popup-content {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.css-property {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+.css-property:last-child {
+  border-bottom: none;
+}
+
+.property-name {
+  color: #905;
+  margin-right: 8px;
+  min-width: 150px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.property-value-input {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 13px;
+  color: #333;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.property-value-input:hover {
+  border-color: #999;
+}
+
+.property-value-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.property-translation {
+  color: #666;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* 滚动条样式 */
+.css-popup-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.css-popup-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.css-popup-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.css-popup-content::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* 复制按钮和相关样式 */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-css-btn,
+.copy-all-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.copy-property-btn {
+  padding: 4px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.copy-property-btn:hover {
+  background: #f0f0f0;
+  border-color: #999;
+  color: #333;
+}
+
+/* 复制成功提示 */
+.copy-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 10000;
+  animation: fadeInOut 1s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  20% { opacity: 1; transform: translate(-50%, 0); }
+  80% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+/* 添加和删除按钮样式 */
+.delete-property-btn {
+  padding: 4px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.delete-property-btn:hover {
+  background: #ffebee;
+  border-color: #f44336;
+  color: #f44336;
+}
+
+/* 属性选择弹窗样式 */
+.property-select-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.property-select-content {
+  padding: 15px;
+}
+
+.property-select-content h4 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+}
+
+.property-search {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.property-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.property-option {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.property-option:hover {
+  background: #f5f5f5;
+}
+
+.property-option .property-translation {
+  color: #666;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+/* CSS 面板样式优化 */
+.css-panel-row {
+  background: #f8f9fa;
+}
+
+.css-panel {
+  padding: 15px;
+  border-top: 1px solid #eee;
+  background: white;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.css-panel-header {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.css-panel-header button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-css-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.add-css-btn:hover {
+  background: #45a049;
+}
+
+.copy-all-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+}
+
+.copy-all-btn:hover {
+  background: #1e88e5;
+}
+
+.css-panel-close {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+.css-panel-close:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+.css-panel-content {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.css-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.css-property {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 15px;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.css-property:hover {
+  background: #f0f0f0;
+}
+
+.property-name {
+  font-family: monospace;
+  color: #333;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+}
+
+.property-translation {
+  color: #666;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.property-value-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.property-value-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.property-value-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* 其他相关样式保持不变... */
+
+/* CSS 面板容器样式优化 */
+.css-panel-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  height: 75%;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  border-top: 1px solid #eee;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 遮罩层样式 */
+.css-panel-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  backdrop-filter: blur(1px);
+}
+
+/* 面板头部样式 */
+.css-panel-header {
+  padding: 10px 16px; /* 减小头部高度 */
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* 按钮样式优化 */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-css-btn,
+.copy-all-btn {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.add-css-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.add-css-btn:hover {
+  background: #43a047;
+}
+
+.copy-all-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+}
+
+.copy-all-btn:hover {
+  background: #1e88e5;
+}
+
+.css-panel-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  color: #666;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.css-panel-close:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+/* 内容区域样式 */
+.css-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  min-height: 0; /* 确保内容区域可以正确滚动 */
+}
+
+.css-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px; /* 添加底部内边距 */
+}
+
+/* 属性项样式优化 */
+.css-property {
+  display: flex;
+  align-items: flex-start; /* 改为顶部对齐，允许换行 */
+  padding: 6px 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  gap: 4px;
+  min-height: 32px;
+}
+
+/* 属性名称样式优化 */
+.property-name {
+  font-family: 'Menlo', 'Monaco', monospace;
+  font-size: 11px;
+  color: #905;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 100px;
+  max-width: 100px;
+  word-wrap: break-word; /* 允许换行 */
+  white-space: normal; /* 允许换行 */
+  line-height: 1.3;
+}
+
+/* 属性值容器样式优化 */
+.property-value-container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 输入框样式优化 */
+.property-value-input {
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: 'Menlo', 'Monaco', monospace;
+  font-size: 11px;
+  color: #333;
+  background: white;
+  transition: all 0.2s;
+  width: 120px; /* 减小宽度 */
+  min-width: 0;
+}
+
+/* 工具按钮样式优化 */
+.property-value-container button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: white;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+/* 属性翻译样式优化 */
+.property-translation {
+  color: #666;
+  font-size: 10px;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 滚动条样式 */
+.css-panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.css-panel-content::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+.css-panel-content::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 3px;
+}
+
+.css-panel-content::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* CSS 按钮禁用状态样式 */
+.view-css-btn.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.view-css-btn.disabled:hover {
+  background-color: #ccc;
+}
+
